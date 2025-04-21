@@ -1,0 +1,81 @@
+/* src/components/Quotes.css */
+
+/* Container */
+.quotes-container {
+    padding: 20px;
+    text-align: center;
+    /* Center align the content */
+}
+
+/* Input and Button Layout */
+.input-button-container {
+    display: flex;
+    flex-direction: column;
+    /* Stack input and button vertically */
+    align-items: center;
+    /* Center align items horizontally */
+    gap: 10px;
+    /* Add spacing between the input and button */
+    margin-bottom: 20px;
+    /* Add spacing below the input/button group */
+}
+
+input[type="text"] {
+    width: 75%; /* Input box takes 75% of the container width */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    width: 20%; /* Button takes 25% of the input box width */
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+
+/* Table Styling */
+.quotes-table {
+    margin: 0 auto;
+    /* Center the table horizontally */
+    width: 90%;
+    /* Set a fixed width for the table */
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.quotes-table th,
+.quotes-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+/* Minimum column widths */
+.quotes-table th:nth-child(1),
+.quotes-table td:nth-child(1) {
+    min-width: 50px;
+    /* Serial number column */
+}
+
+.quotes-table th:nth-child(2),
+.quotes-table td:nth-child(2) {
+    min-width: 200px;
+    /* Quote text column */
+}
+
+.quotes-table th:nth-child(3),
+.quotes-table td:nth-child(3) {
+    min-width: 50px;
+    /* Action column */
+}

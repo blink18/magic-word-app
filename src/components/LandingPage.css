@@ -1,0 +1,60 @@
+/* src/components/LandingPage.css */
+
+/* Menu container */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    /* Stack buttons vertically */
+    align-items: flex-start;
+    /* Align buttons to the left */
+    padding: 20px;
+    width: 20%;
+    border-right: 1px solid #ccc;
+    background-color: #f9f9f9;
+    /* Light background for the menu */
+}
+
+/* Buttons */
+button {
+    width: 90%;
+    /* Updated: 90% width */
+    padding: 10px;
+    margin-bottom: 10px;
+    /* Add spacing between buttons */
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e0e0e0;
+    /* Light gray */
+    color: #333;
+    /* Dark text for contrast */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Smooth hover effect */
+}
+
+
+button:hover {
+    background-color: #d0d0d0;
+    /* Slightly darker gray on hover */
+}
+
+button:focus {
+    outline: none;
+    /* Remove default focus outline */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    /* Add a subtle focus shadow */
+}
+
+/* Logout Button Styling */
+button.logout {
+    background-color: #ff4d4d;
+    /* Red background */
+    color: white;
+    /* White text */
+}
+
+button.logout:hover {
+    background-color: #cc0000;
+    /* Darker red on hover */
+}
