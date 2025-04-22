@@ -1,6 +1,6 @@
 // src/components/LoginPage.js
 import React, { useState } from "react";
-import "./LoginPage.css"; // Import the CSS file for styling
+import "../assets/styles.css"; // Updated to use the new location of the consolidated CSS file
 
 function LoginPage({ onLoginSuccess }) {
   const [inputValue, setInputValue] = useState("");
@@ -11,7 +11,7 @@ function LoginPage({ onLoginSuccess }) {
       onLoginSuccess();
     } else {
       setErrorMessage("No Deal");
-      setTimeout(() => setErrorMessage(" "), 5000); // Clear message after 10s
+      setTimeout(() => setErrorMessage(" "), 2500); // Clear message after 10s
     }
   };
 
@@ -25,7 +25,7 @@ function LoginPage({ onLoginSuccess }) {
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Say the magic word"
         />
-        <button onClick={handleLogin}>Let me in</button>
+        <button className="letmein-button" onClick={handleLogin}>Let me in</button>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
     </div>

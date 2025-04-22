@@ -1,0 +1,231 @@
+/* Consolidated and rearranged CSS File */
+
+/* General Button Styles */
+button {
+    width: 37.5%; /* 50% of the input field width */
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #d3d3d3; /* Light gray background */
+    color: #333; /* Dark gray text */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #a9a9a9; /* Darker gray on hover */
+}
+
+/* Specific Button Styles */
+.letmein-button {
+    width: 37.5%; /* 50% of the input field width */
+    margin-top: 15px; /* Added spacing above the button */
+}
+.letmein-button:hover {
+    background-color: #a9a9a9; /* Darker gray on hover */
+}
+
+.landing-page-button {
+    padding: 10px; /* 10px padding all around */
+    width: 60%; /* 60% width of the container */
+    margin-bottom: 10px; /* Spacing between buttons */
+}
+.landing-page-button:hover {
+    background-color: #a9a9a9; /* Darker gray on hover */
+}
+
+button.logout {
+    background-color: #d3d3d3; /* Light gray background */
+    color: #333; /* Dark gray text */
+}
+button.logout:hover {
+    background-color: #a9a9a9; /* Darker gray on hover */
+}
+
+/* Input Field Styles */
+input[type="text"] {
+    width: 75%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Containers */
+.quotes-container {
+    padding: 20px;
+    text-align: center;
+}
+.tasks-container {
+    padding: 20px;
+    text-align: center;
+}
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    width: 20%;
+    border-right: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+.input-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px; /* Spacing between the input and button */
+    margin-bottom: 20px;
+}
+
+/* Tables */
+.quotes-table {
+    margin: 0 auto;
+    width: 90%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+.quotes-table th,
+.quotes-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+.tasks-table {
+    margin: 0 auto;
+    width: 90%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+.tasks-table th,
+.tasks-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+/* Login Page Styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+.login-box {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold; /* Bold styling */
+}
+
+/* App Styles */
+.App {
+    text-align: center;
+}
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+.App-link {
+    color: #a9a9a9; /* Updated link color to gray */
+}
+
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+/* Styles for the Welcome Page */
+.welcome-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.weather-panel, .image-panel {
+    width: 45%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Updated styles for the weather panel */
+.weather-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.weather-panel .weather-result {
+    margin-bottom: 20px; /* Add spacing below the weather result */
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+}
+
+.weather-panel .input-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.weather-panel input[type="text"] {
+    width: 65%; /* 65% of the panel width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.weather-panel button {
+    width: 25%; /* 25% of the panel width */
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #d3d3d3;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px; /* Add gap between the input and button */
+}
+
+.weather-panel button:hover {
+    background-color: #a9a9a9;
+}

@@ -1,6 +1,6 @@
 // src/components/Quotes.js
 import React, { useState, useEffect } from "react";
-import "./Quotes.css"; // Import the CSS file for styling
+import "../assets/styles.css"; // Updated to use the new location of the consolidated CSS file
 
 function Quotes() {
     const [quotes, setQuotes] = useState([]);

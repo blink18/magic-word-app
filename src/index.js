@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './assets/styles.css'; // Updated to use the new location of the consolidated CSS file
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
