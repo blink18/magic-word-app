@@ -1,6 +1,8 @@
 // src/components/Quotes.js
 import React, { useState, useEffect } from "react";
 import "../assets/styles.css"; // Updated to use the new location of the consolidated CSS file
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
 function Quotes() {
     const [quotes, setQuotes] = useState([]);
@@ -33,6 +35,11 @@ function Quotes() {
                     value={newQuote}
                     onChange={(e) => setNewQuote(e.target.value)}
                     placeholder="Enter a new quote"
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            addQuote();
+                        }
+                      }}
                 />
                 <button onClick={addQuote}>Add Quote</button>
             </div>
@@ -51,7 +58,9 @@ function Quotes() {
                             <td>{index + 1}</td>
                             <td>{quote.text}</td>
                             <td>
-                                <button onClick={() => deleteQuote(quote.id)}>🗑️</button>
+                                <button onClick={() => deleteQuote(quote.id)}>
+                                    <FontAwesomeIcon icon={faTrashAlt} />
+                                </button>
                             </td>
                         </tr>
                     ))}

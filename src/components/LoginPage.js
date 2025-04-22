@@ -1,6 +1,8 @@
 // src/components/LoginPage.js
 import React, { useState } from "react";
 import "../assets/styles.css"; // Updated to use the new location of the consolidated CSS file
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faKey } from '@fortawesome/free-solid-svg-icons';
 
 function LoginPage({ onLoginSuccess }) {
   const [inputValue, setInputValue] = useState("");
@@ -24,8 +26,15 @@ function LoginPage({ onLoginSuccess }) {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Say the magic word"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleLogin();
+            }
+          }}
         />
-        <button className="letmein-button" onClick={handleLogin}>Let me in</button>
+        <button className="letmein-button" onClick={handleLogin}>
+          Let me in  <FontAwesomeIcon icon={faKey} />
+        </button>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
     </div>

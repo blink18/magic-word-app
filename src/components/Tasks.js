@@ -1,6 +1,8 @@
 // src/components/Tasks.js
 import React, { useState, useEffect } from "react";
 import "../assets/styles.css"; // Updated to use the new location of the consolidated CSS file
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
 function Tasks() {
   const [tasks, setTasks] = useState([]);
@@ -26,6 +28,12 @@ function Tasks() {
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   };
 
+  const deleteTask = (id) => {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  };
+
   return (
     <div className="tasks-container">
       <h2>Tasks</h2>
@@ -35,6 +43,11 @@ function Tasks() {
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
           placeholder="Add a new task"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              addTask();
+            }
+          }}
         />
         <button onClick={addTask}>Add Task</button>
       </div>
@@ -45,6 +58,7 @@ function Tasks() {
             <th>#</th>
             <th>Task</th>
             <th>Done</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +72,11 @@ function Tasks() {
                   checked={task.done}
                   onChange={() => toggleDone(task.id)}
                 />
+              </td>
+              <td>
+                <button onClick={() => deleteTask(task.id)}>
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                </button>
               </td>
             </tr>
           ))}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import config from "../config";
 import "../assets/styles.css";
+import { faCloudSun } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function WelcomePage() {
     const [location, setLocation] = useState(localStorage.getItem("weatherLocation") || "iata:HYD");
@@ -40,7 +42,9 @@ function WelcomePage() {
                         onChange={(e) => setLocation(e.target.value)}
                         placeholder="Enter location"
                     />
-                    <button onClick={fetchWeather}>Get Weather</button>
+                    <button onClick={fetchWeather}>
+                        Get Weather  <FontAwesomeIcon icon={faCloudSun} />
+                    </button>
                 </div>
             </div>
 
@@ -48,6 +52,12 @@ function WelcomePage() {
             <div className="image-panel" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <h2>Welcome Image</h2>
                 <img src="/images/sample-image.png" alt="Welcome" style={{ maxWidth: "300px", height: "auto" }} />
+            </div>
+
+            {/* JSON Panel */}
+            <div className="json-panel">
+                <h2>Weather API Response</h2>
+                <pre>{JSON.stringify(weather, null, 2)}</pre>
             </div>
         </div>
     );
