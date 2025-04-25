@@ -47,7 +47,7 @@ function WelcomePage() {
         };
 
         initializeLocation();
-    }, []);
+    }, [fetchWeather]); // Added fetchWeather as a dependency
 
     const CollapsiblePanel = ({ title, content }) => {
         const [isOpen, setIsOpen] = useState(false);
