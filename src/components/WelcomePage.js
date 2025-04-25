@@ -7,9 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function WelcomePage() {
     const [location, setLocation] = useState(localStorage.getItem("weatherLocation") || "iata:HYD");
     const [weather, setWeather] = useState(null);
+    const [ipResponse, setIpResponse] = useState(null);
+    const [locationResponse, setLocationResponse] = useState(null);
 
     const fetchWeather = async () => {
         try {
+            console.log("Location being passed to fetchWeather:", location);
             const response = await fetch(`https://api.weatherapi.com/v1/current.json?q=${location}&key=${config.weatherApiKey}`);
             const data = await response.json();
             setWeather(data);
@@ -19,9 +22,48 @@ function WelcomePage() {
         }
     };
 
+    const fetchLocationFromIP = async () => {
+        try {
+            const ipResponse = await fetch("https://api.ipify.org?format=json");
+            const ipData = await ipResponse.json();
+            setIpResponse(ipData);
+
+            const locationResponse = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
+            const locationData = await locationResponse.json();
+            setLocationResponse(locationData);
+
+            return locationData.city || "iata:HYD"; // Fallback to "iata:HYD" if city is unavailable
+        } catch (error) {
+            console.error("Error fetching location from IP:", error);
+            return "iata:HYD"; // Fallback in case of error
+        }
+    };
+
     useEffect(() => {
-        fetchWeather();
+        const initializeLocation = async () => {
+            const detectedLocation = await fetchLocationFromIP();
+            setLocation(detectedLocation);
+            fetchWeather(); // Fetch weather after location is set
+        };
+
+        initializeLocation();
     }, []);
+
+    const CollapsiblePanel = ({ title, content }) => {
+        const [isOpen, setIsOpen] = useState(false);
+
+        return (
+            <div>
+                <div
+                    style={{ cursor: "pointer", fontWeight: "bold", marginBottom: "5px" }}
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {isOpen ? "▼" : "▶"} {title}
+                </div>
+                {isOpen && <pre style={{ marginLeft: "20px" }}>{content}</pre>}
+            </div>
+        );
+    };
 
     return (
         <div className="welcome-container">
@@ -56,8 +98,10 @@ function WelcomePage() {
 
             {/* JSON Panel */}
             <div className="json-panel">
-                <h2>Weather API Response</h2>
-                <pre>{JSON.stringify(weather, null, 2)}</pre>
+                <h2>API Responses</h2>
+                <CollapsiblePanel title="Weather API Response" content={JSON.stringify(weather, null, 2)} />
+                <CollapsiblePanel title="IP Response" content={JSON.stringify(ipResponse, null, 2)} />
+                <CollapsiblePanel title="Location Response" content={JSON.stringify(locationResponse, null, 2)} />
             </div>
         </div>
     );
