@@ -24,11 +24,11 @@ function WelcomePage() {
 
     const fetchLocationFromIP = async () => {
         try {
-            const ipResponse = await fetch("https://api.ipify.org?format=json");
+            const ipResponse = await fetch("https://us1.api-bdc.net/data/client-ip");
             const ipData = await ipResponse.json();
             setIpResponse(ipData);
 
-            const locationResponse = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
+            const locationResponse = await fetch(`https://ipapi.co/${ipData.ipString}/json/`);
             const locationData = await locationResponse.json();
             setLocationResponse(locationData);
 
@@ -40,14 +40,25 @@ function WelcomePage() {
     };
 
     useEffect(() => {
-        const initializeLocation = async () => {
-            const detectedLocation = await fetchLocationFromIP();
-            setLocation(detectedLocation);
-            fetchWeather(); // Fetch weather after location is set
+        let isInitialized = false; // Flag to ensure initialization happens only once
+
+        const initializeLocationAndWeather = async () => {
+            if (!isInitialized) {
+                isInitialized = true;
+                const detectedLocation = await fetchLocationFromIP();
+                if (!location || location.trim() === "") {
+                    setLocation(detectedLocation); 
+                }
+                await fetchWeather();
+            }
         };
 
-        initializeLocation();
-    }, [fetchWeather]); // Added fetchWeather as a dependency
+        initializeLocationAndWeather();
+
+        return () => {
+            isInitialized = false; // Cleanup flag on unmount
+        };
+    }, [location]); // Added location as a dependency to handle changes
 
     const CollapsiblePanel = ({ title, content }) => {
         const [isOpen, setIsOpen] = useState(false);
