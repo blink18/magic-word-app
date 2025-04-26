@@ -52,25 +52,35 @@ function WelcomePage() {
     };
 
     useEffect(() => {
-        let isInitialized = false; // Flag to ensure initialization happens only once
-
-        const initializeLocationAndWeather = async () => {
-            if (!isInitialized) {
-                isInitialized = true;
+        const initializeWeather = async () => {
+            const savedWeather = localStorage.getItem("weatherData");
+            const savedLocation = localStorage.getItem("weatherLocation");
+            if (savedWeather && savedLocation) {
+                setWeather(JSON.parse(savedWeather)); // Display saved weather data
+                setLocation(savedLocation); // Retain the last used location
+            } else {
                 const detectedLocation = await fetchLocationFromIP();
-                if (!location || location.trim() === "") {
-                    setLocation(detectedLocation); 
-                }
-                await fetchWeather();
+                setLocation(detectedLocation);
+                const response = await fetch(`https://api.weatherapi.com/v1/current.json?q=${detectedLocation}&key=${config.weatherApiKey}`);
+                const data = await response.json();
+                setWeather(data);
+                localStorage.setItem("weatherData", JSON.stringify(data)); // Save weather data for future use
+                localStorage.setItem("weatherLocation", detectedLocation); // Save detected location
             }
         };
 
-        initializeLocationAndWeather();
+        initializeWeather();
+    }, []); // Run only once when the component mounts
 
-        return () => {
-            isInitialized = false; // Cleanup flag on unmount
-        };
-    }, [location]); // Added location as a dependency to handle changes
+    const handleFetchWeather = async () => {
+        if (location.trim()) {
+            const response = await fetch(`https://api.weatherapi.com/v1/current.json?q=${location}&key=${config.weatherApiKey}`);
+            const data = await response.json();
+            setWeather(data);
+            localStorage.setItem("weatherData", JSON.stringify(data)); // Update saved weather data
+            localStorage.setItem("weatherLocation", location); // Update saved location
+        }
+    };
 
     const CollapsiblePanel = ({ title, content }) => {
         const [isOpen, setIsOpen] = useState(false);
@@ -100,17 +110,20 @@ function WelcomePage() {
                         <p><strong>Condition:</strong> {weather.current.condition.text}</p>
                     </div>
                 )}
-                <div className="input-button-container" style={{ display: "flex", alignItems: "center", gap: "10px", width: "50%" }}>
+                <div className="input-button-container">
                     <input
                         type="text"
                         value={location}
-                        onChange={(e) => setLocation(e.target.value)}
+                        onChange={(e) => setLocation(e.target.value)} // Only updates the location state
                         placeholder="Enter location"
-                        style={{ flex: 1 }} // Make input take 50% width
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                handleFetchWeather();
+                            }
+                        }}
                     />
                     <button 
-                        onClick={() => { if (location.trim()) fetchWeather(); }}
-                        style={{ flex: 1 }} // Make button take 50% width
+                        onClick={handleFetchWeather}
                     >
                         Get Weather <FontAwesomeIcon icon={faCloudSun} />
                     </button>

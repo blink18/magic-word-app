@@ -1,15 +1,19 @@
 // src/components/LoginPage.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/styles.css"; // Updated to use the new location of the consolidated CSS file
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 
 function LoginPage({ onLoginSuccess }) {
-  const [inputValue, setInputValue] = useState("");
+  const [textboxValue, setTextboxValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(" ");
 
+  useEffect(() => {
+    setTextboxValue("open sesame"); // Set default value after the page loads
+}, []); // Empty dependency array ensures this runs only once after the component mounts
+
   const handleLogin = () => {
-    if (inputValue.trim().toLowerCase() === "open sesame") {
+    if (textboxValue.trim().toLowerCase() === "open sesame") {
       onLoginSuccess();
     } else {
       setErrorMessage("No Deal");
@@ -23,9 +27,9 @@ function LoginPage({ onLoginSuccess }) {
         <h4>Say the Magic Word</h4>
         <input
           type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Say the magic word"
+          value={textboxValue}
+          onChange={(e) => setTextboxValue(e.target.value)} // Allow changing the value
+          placeholder="Enter text"
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               handleLogin();

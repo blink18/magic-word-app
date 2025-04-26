@@ -1,9 +1,6 @@
 /* CSS Styles for the React App */
 
 button {
-    min-width: 80%;
-    max-width: 95%;
-    width: max-content;
     padding: 10px;
     font-size: 16px;
     border: none;
@@ -18,7 +15,7 @@ button:hover {
     background-color: #a9a9f9;
 }
 
-/* Specific Button Styles */
+/* Specific Button Modifiers */
 .letmein-button {
     margin-top: 15px;
 }
@@ -28,7 +25,6 @@ button:hover {
 }
 
 .landing-page-button {
-    padding: 10px;
     margin-bottom: 10px;
 }
 
@@ -36,8 +32,7 @@ button:hover {
     background-color: #f9a9a9;
 }
 
-
-/* Input Field Styles */
+/* Consolidated Input Field Styles */
 input[type="text"] {
     width: 75%;
     padding: 10px;
@@ -70,10 +65,28 @@ input[type="text"] {
 
 .input-button-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Ensure elements are in a straight horizontal line */
     align-items: center;
-    gap: 25px;
-    margin-bottom: 20px;
+    gap: 10px;
+    width: 100%;
+}
+
+.input-button-container input {
+    flex: 1 1 70%; /* Preferred width: 70% of the container */
+    max-width: 70%; /* Maximum width: 70% of the container */
+    min-width: 50px; /* Minimum width: 50px */
+    width: auto; /* Ensure it adjusts dynamically */
+}
+
+.input-button-container button {
+    flex: 0 1 25%; /* Adjusted button width to balance with the wider text box */
+    max-width: 25%; /* Maximum width: 25% of the container */
+    min-width: fit-content; /* Minimum width to accommodate the label in a single line */
+}
+
+.input-button-container input,
+.input-button-container button {
+    width: min(70%, 25%); /* Ensure the text box width is at least numerically equal to the button width */
 }
 
 /* Tables */
@@ -215,22 +228,22 @@ code {
 
 .weather-panel .input-button-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row; /* Ensure elements are in a straight horizontal line */
     align-items: center;
+    gap: 10px;
     width: 100%;
 }
 
 .weather-panel input[type="text"] {
-    width: 65%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    flex: 1 1 60%; /* Preferred width: 60% of the container */
+    max-width: 60%; /* Maximum width: 60% of the container */
+    min-width: 50px; /* Minimum width: 50px */
 }
 
 .weather-panel button {
-    min-width: 25%;
-    max-width: 50%;
-    width: max-content;
+    flex: 0 1 35%; /* Preferred width: 35% of the container */
+    max-width: 35%; /* Maximum width: 35% of the container */
+    min-width: fit-content; /* Minimum width to accommodate the label in a single line */
     padding: 10px;
     font-size: 16px;
     border: none;
