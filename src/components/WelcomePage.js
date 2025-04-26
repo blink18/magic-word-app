@@ -79,6 +79,7 @@ function WelcomePage() {
             setWeather(data);
             localStorage.setItem("weatherData", JSON.stringify(data)); // Update saved weather data
             localStorage.setItem("weatherLocation", location); // Update saved location
+            console.log(`Weather being fetched for location: ${location}`);
         }
     };
 
@@ -113,8 +114,9 @@ function WelcomePage() {
                 <div className="input-button-container">
                     <input
                         type="text"
+                        name="weather-location"
                         value={location}
-                        onChange={(e) => setLocation(e.target.value)} // Only updates the location state
+                        onChange={(e) => setLocation(e.target.value)}
                         placeholder="Enter location"
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {

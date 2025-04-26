@@ -2,7 +2,7 @@
   "name": "magic-word-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://blink18.github.io/magic-word-app",
+  "homepage": "/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
