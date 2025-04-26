@@ -52,41 +52,65 @@ input[type="text"] {
     text-align: center;
 }
 
+.landing-container {
+    display: flex;
+    padding: 20px;
+    background-color: lavender;
+    gap: 20px;
+}
+
 .menu-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     width: 20%;
-    height: 600px; /* Fixed height */
-    border-right: 1px solid #ccc;
-    background-color: #f9f9f9;
+    background-color: #efefef;
+}
+
+.display-container {
+    display: flex;
+    padding: 20px;
+    background-color: #ddf2d1;
+    flex: 1 1 75%;
+    min-width: 75%;
+    justify-content: space-evenly; /* Distribute items equally if more than one */
+    align-items: center; /* Center items vertically */
 }
 
 .input-button-container {
     display: flex;
-    flex-direction: row; /* Ensure elements are in a straight horizontal line */
+    flex-direction: row;
+    /* Ensure elements are in a straight horizontal line */
     align-items: center;
     gap: 10px;
     width: 100%;
 }
 
 .input-button-container input {
-    flex: 1 1 70%; /* Preferred width: 70% of the container */
-    max-width: 70%; /* Maximum width: 70% of the container */
-    min-width: 50px; /* Minimum width: 50px */
-    width: auto; /* Ensure it adjusts dynamically */
+    flex: 1 1 70%;
+    /* Preferred width: 70% of the container */
+    max-width: 70%;
+    /* Maximum width: 70% of the container */
+    min-width: 50px;
+    /* Minimum width: 50px */
+    width: auto;
+    /* Ensure it adjusts dynamically */
 }
 
 .input-button-container button {
-    flex: 0 1 25%; /* Adjusted button width to balance with the wider text box */
-    max-width: 25%; /* Maximum width: 25% of the container */
-    min-width: fit-content; /* Minimum width to accommodate the label in a single line */
+    flex: 0 1 25%;
+    /* Adjusted button width to balance with the wider text box */
+    max-width: 25%;
+    /* Maximum width: 25% of the container */
+    min-width: fit-content;
+    /* Minimum width to accommodate the label in a single line */
 }
 
 .input-button-container input,
 .input-button-container button {
-    width: min(70%, 25%); /* Ensure the text box width is at least numerically equal to the button width */
+    width: min(70%, 25%);
+    /* Ensure the text box width is at least numerically equal to the button width */
 }
 
 /* Tables */
@@ -228,22 +252,29 @@ code {
 
 .weather-panel .input-button-container {
     display: flex;
-    flex-direction: row; /* Ensure elements are in a straight horizontal line */
+    flex-direction: row;
+    /* Ensure elements are in a straight horizontal line */
     align-items: center;
     gap: 10px;
     width: 100%;
 }
 
 .weather-panel input[type="text"] {
-    flex: 1 1 60%; /* Preferred width: 60% of the container */
-    max-width: 60%; /* Maximum width: 60% of the container */
-    min-width: 50px; /* Minimum width: 50px */
+    flex: 1 1 60%;
+    /* Preferred width: 60% of the container */
+    max-width: 60%;
+    /* Maximum width: 60% of the container */
+    min-width: 50px;
+    /* Minimum width: 50px */
 }
 
 .weather-panel button {
-    flex: 0 1 35%; /* Preferred width: 35% of the container */
-    max-width: 35%; /* Maximum width: 35% of the container */
-    min-width: fit-content; /* Minimum width to accommodate the label in a single line */
+    flex: 0 1 35%;
+    /* Preferred width: 35% of the container */
+    max-width: 35%;
+    /* Maximum width: 35% of the container */
+    min-width: fit-content;
+    /* Minimum width to accommodate the label in a single line */
     padding: 10px;
     font-size: 16px;
     border: none;

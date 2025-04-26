@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Tasks from "./Tasks";
 import Quotes from "./Quotes";
 import WelcomePage from "./WelcomePage";
-import "../assets/styles.css"; // Updated to use the new location of the consolidated CSS file
+import "../assets/styles.css";
 import { faLock, faHouse, faListCheck, faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -11,7 +11,7 @@ function LandingPage({ onLogout }) {
   const [activeTab, setActiveTab] = useState("welcome");
 
   return (
-    <div style={{ display: "flex" }}>
+    <div className="landing-container">
       {/* Left Menu */}
       <div className="menu-container">
         <button className="landing-page-button" onClick={() => setActiveTab("welcome")}>Home  <FontAwesomeIcon icon={faHouse} /></button>
@@ -21,7 +21,7 @@ function LandingPage({ onLogout }) {
       </div>
 
       {/* Right Panel */}
-      <div style={{ width: "80%" }}>
+      <div className="display-container">
         {activeTab === "welcome" ? <WelcomePage /> : activeTab === "tasks" ? <Tasks /> : <Quotes />}
       </div>
     </div>
