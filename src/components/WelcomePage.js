@@ -24,15 +24,27 @@ function WelcomePage() {
 
     const fetchLocationFromIP = async () => {
         try {
-            const ipResponse = await fetch("https://us1.api-bdc.net/data/client-ip");
-            const ipData = await ipResponse.json();
-            setIpResponse(ipData);
+            console.log("Attempting to get IP");
+            const ipResponse = await fetch("https://ip4only.me/api/");
+            const ipDataRaw = await ipResponse.text(); // Fetch raw text response
+            const ipData = ipDataRaw.split(",")[1]; // Extract the IP address (second field)
+            setIpResponse({ ipString: ipData }); // Update state with extracted IP address
+            console.log("IP Data:", ipData);
+            console.log("Location fetch query:", `ip-api.com/json/${ipData}?fields=57362`);
 
-            const locationResponse = await fetch(`https://ipapi.co/${ipData.ipString}/json/`);
+            // See https://ip-api.com/docs/api:json for fields number explanation in the below call
+            const locationResponse = await fetch(`http://ip-api.com/json/${ipData}?fields=49170`); 
             const locationData = await locationResponse.json();
-            setLocationResponse(locationData);
-
-            return locationData.city || "iata:HYD"; // Fallback to "iata:HYD" if city is unavailable
+            console.log("Location Data:", locationData);
+            if (locationData.status === "success") {
+                setLocationResponse(locationData);
+                const city = locationData.city || "iata:HYD";
+                setLocation(city); 
+                return city;
+            } else {
+                console.error("Error fetching location from IP API:", locationData.message);
+                return "iata:HYD"; // Fallback in case of error
+            }
         } catch (error) {
             console.error("Error fetching location from IP:", error);
             return "iata:HYD"; // Fallback in case of error
@@ -81,22 +93,26 @@ function WelcomePage() {
             {/* Weather Panel */}
             <div className="weather-panel">
                 <h2>Weather Information</h2>
-                {weather && (
+                {weather && weather.location && (
                     <div className="weather-result">
                         <p><strong>Location:</strong> {weather.location.name}</p>
                         <p><strong>Temperature:</strong> {weather.current.temp_c}°C</p>
                         <p><strong>Condition:</strong> {weather.current.condition.text}</p>
                     </div>
                 )}
-                <div className="input-button-container">
+                <div className="input-button-container" style={{ display: "flex", alignItems: "center", gap: "10px", width: "50%" }}>
                     <input
                         type="text"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         placeholder="Enter location"
+                        style={{ flex: 1 }} // Make input take 50% width
                     />
-                    <button onClick={fetchWeather}>
-                        Get Weather  <FontAwesomeIcon icon={faCloudSun} />
+                    <button 
+                        onClick={() => { if (location.trim()) fetchWeather(); }}
+                        style={{ flex: 1 }} // Make button take 50% width
+                    >
+                        Get Weather <FontAwesomeIcon icon={faCloudSun} />
                     </button>
                 </div>
             </div>
