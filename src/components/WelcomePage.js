@@ -9,18 +9,7 @@ function WelcomePage() {
     const [weather, setWeather] = useState(null);
     const [ipResponse, setIpResponse] = useState(null);
     const [locationResponse, setLocationResponse] = useState(null);
-
-    const fetchWeather = async () => {
-        try {
-            console.log("Location being passed to fetchWeather:", location);
-            const response = await fetch(`https://api.weatherapi.com/v1/current.json?q=${location}&key=${config.weatherApiKey}`);
-            const data = await response.json();
-            setWeather(data);
-            localStorage.setItem("weatherLocation", location);
-        } catch (error) {
-            console.error("Error fetching weather data:", error);
-        }
-    };
+    const [loading, setLoading] = useState(false);
 
     const fetchLocationFromIP = async () => {
         try {
@@ -33,13 +22,13 @@ function WelcomePage() {
             console.log("Location fetch query:", `ip-api.com/json/${ipData}?fields=57362`);
 
             // See https://ip-api.com/docs/api:json for fields number explanation in the below call
-            const locationResponse = await fetch(`http://ip-api.com/json/${ipData}?fields=49170`); 
+            const locationResponse = await fetch(`http://ip-api.com/json/${ipData}?fields=49170`);
             const locationData = await locationResponse.json();
             console.log("Location Data:", locationData);
             if (locationData.status === "success") {
                 setLocationResponse(locationData);
                 const city = locationData.city || "iata:HYD";
-                setLocation(city); 
+                setLocation(city);
                 return city;
             } else {
                 console.error("Error fetching location from IP API:", locationData.message);
@@ -74,12 +63,19 @@ function WelcomePage() {
 
     const handleFetchWeather = async () => {
         if (location.trim()) {
-            const response = await fetch(`https://api.weatherapi.com/v1/current.json?q=${location}&key=${config.weatherApiKey}`);
-            const data = await response.json();
-            setWeather(data);
-            localStorage.setItem("weatherData", JSON.stringify(data)); // Update saved weather data
-            localStorage.setItem("weatherLocation", location); // Update saved location
-            console.log(`Weather being fetched for location: ${location}`);
+            setLoading(true); // Set loading to true
+            try {
+                const response = await fetch(`https://api.weatherapi.com/v1/current.json?q=${location}&key=${config.weatherApiKey}`);
+                const data = await response.json();
+                setWeather(data);
+                localStorage.setItem("weatherData", JSON.stringify(data)); // Update saved weather data
+                localStorage.setItem("weatherLocation", location); // Update saved location
+                console.log(`Weather being fetched for location: ${location}`);
+            } catch (error) {
+                console.error("Error fetching weather data:", error);
+            } finally {
+                setLoading(false); // Set loading to false
+            }
         }
     };
 
@@ -104,13 +100,17 @@ function WelcomePage() {
             {/* Weather Panel */}
             <div className="weather-panel">
                 <h2>Weather Information</h2>
-                {weather && weather.location && (
+                {loading ? (
+                    <div className="weather-result">
+                        <img src="/images/wait.webp" alt="Loading..." style={{ maxWidth: "100px", height: "auto" }} />
+                    </div>
+                ) : (weather && weather.location && (
                     <div className="weather-result">
                         <p><strong>Location:</strong> {weather.location.name}</p>
                         <p><strong>Temperature:</strong> {weather.current.temp_c}°C</p>
                         <p><strong>Condition:</strong> {weather.current.condition.text}</p>
                     </div>
-                )}
+                ))}
                 <div className="input-button-container">
                     <input
                         type="text"
@@ -124,7 +124,7 @@ function WelcomePage() {
                             }
                         }}
                     />
-                    <button 
+                    <button
                         onClick={handleFetchWeather}
                     >
                         Get Weather <FontAwesomeIcon icon={faCloudSun} />
