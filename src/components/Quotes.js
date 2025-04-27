@@ -27,7 +27,7 @@ function Quotes() {
     };
 
     return (
-        <div className="quotes-container">
+        <div className="page-container" id="quotes-page-container">
             <h2>Quotes</h2>
             <div className="input-button-container">
                 <input
@@ -44,28 +44,33 @@ function Quotes() {
                 <button onClick={addQuote}>Add Quote</button>
             </div>
 
-            <table className="quotes-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Quote</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {quotes.map((quote, index) => (
-                        <tr key={quote.id}>
-                            <td>{index + 1}</td>
-                            <td>{quote.text}</td>
-                            <td>
-                                <button onClick={() => deleteQuote(quote.id)}>
-                                    <FontAwesomeIcon icon={faTrashAlt} />
-                                </button>
-                            </td>
+            <div id="quotes-table">
+                <table className="display-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Quote</th>
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {quotes.map((quote, index) => (
+                            <tr key={quote.id}>
+                                <td>{index + 1}</td>
+                                <td>{quote.text}</td>
+                                <td>
+                                    <button onClick={() => deleteQuote(quote.id)}>
+                                        <FontAwesomeIcon icon={faTrashAlt} />
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className="page-footer" id="quotes-footer">
+  <p>Note: Quotes are saved in local storage. Refreshing the page will not delete them.</p>
+</div>
         </div>
     );
 }

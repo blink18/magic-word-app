@@ -35,7 +35,7 @@ function Tasks() {
   };
 
   return (
-    <div className="tasks-container">
+    <div className="page-container" id="tasks-page-container">
       <h2>Tasks</h2>
       <div className="input-button-container">
         <input
@@ -52,36 +52,42 @@ function Tasks() {
         <button onClick={addTask}>Add Task</button>
       </div>
 
-      <table className="tasks-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Task</th>
-            <th>Done</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task, index) => (
-            <tr key={task.id}>
-              <td>{index + 1}</td>
-              <td>{task.text}</td>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={task.done}
-                  onChange={() => toggleDone(task.id)}
-                />
-              </td>
-              <td>
-                <button onClick={() => deleteTask(task.id)}>
-                  <FontAwesomeIcon icon={faTrashAlt} />
-                </button>
-              </td>
+      <div id="task-table">
+        <table className="display-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Task</th>
+              <th>Done</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {tasks.map((task, index) => (
+              <tr key={task.id}>
+                <td>{index + 1}</td>
+                <td>{task.text}</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={task.done}
+                    onChange={() => toggleDone(task.id)}
+                  />
+                </td>
+                <td>
+                  <button onClick={() => deleteTask(task.id)}>
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="page-footer" id="tasks-footer">
+        <p>Note: Tasks are saved in local storage. Refreshing the page will not delete them.</p>
+      </div>
     </div>
   );
 }
