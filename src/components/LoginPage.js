@@ -9,8 +9,8 @@ function LoginPage({ onLoginSuccess }) {
   const [errorMessage, setErrorMessage] = useState(" ");
 
   useEffect(() => {
-    setTextboxValue("open sesame"); // Set default value after the page loads
-}, []); // Empty dependency array ensures this runs only once after the component mounts
+    setTextboxValue("Enter codeword"); // Set default value after the page loads
+}, []); 
 
   const handleLogin = () => {
     if (textboxValue.trim().toLowerCase() === "open sesame") {
