@@ -135,7 +135,7 @@ function WelcomePage() {
             {/* Image Panel */}
             <div className="image-panel" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <h2>Welcome Image</h2>
-                <img src="/images/sample-image.png" alt="Welcome" style={{ maxWidth: "300px", height: "auto" }} />
+                <img src="images/sample-image.png" alt="Welcome" style={{ maxWidth: "300px", height: "auto" }} />
             </div>
 
             {/* JSON Panel */}
