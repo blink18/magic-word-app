@@ -11,6 +11,7 @@ function LoginPage({ onLoginSuccess }) {
   useEffect(() => {
     setTextboxValue("open sesame"); // Set default value after the page loads
 }, []);
+
   const handleLogin = () => {
     if (textboxValue.trim().toLowerCase() === "open sesame") {
       onLoginSuccess();
