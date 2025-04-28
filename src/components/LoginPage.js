@@ -10,8 +10,7 @@ function LoginPage({ onLoginSuccess }) {
 
   useEffect(() => {
     setTextboxValue("open sesame"); // Set default value after the page loads
-}, []); // Empty dependency array ensures this runs only once after the component mounts
-
+}, []);
   const handleLogin = () => {
     if (textboxValue.trim().toLowerCase() === "open sesame") {
       onLoginSuccess();
