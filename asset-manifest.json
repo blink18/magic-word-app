@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/magic-word-app/static/css/main.62388c08.css",
-    "main.js": "/magic-word-app/static/js/main.c319d04b.js",
-    "static/js/488.7439f99e.chunk.js": "/magic-word-app/static/js/488.7439f99e.chunk.js",
+    "main.css": "/magic-word-app/static/css/main.f975e1fa.css",
+    "main.js": "/magic-word-app/static/js/main.2ee4991a.js",
+    "static/js/488.95eff2cd.chunk.js": "/magic-word-app/static/js/488.95eff2cd.chunk.js",
     "index.html": "/magic-word-app/index.html",
-    "main.62388c08.css.map": "/magic-word-app/static/css/main.62388c08.css.map",
-    "main.c319d04b.js.map": "/magic-word-app/static/js/main.c319d04b.js.map",
-    "488.7439f99e.chunk.js.map": "/magic-word-app/static/js/488.7439f99e.chunk.js.map"
+    "main.f975e1fa.css.map": "/magic-word-app/static/css/main.f975e1fa.css.map",
+    "main.2ee4991a.js.map": "/magic-word-app/static/js/main.2ee4991a.js.map",
+    "488.95eff2cd.chunk.js.map": "/magic-word-app/static/js/488.95eff2cd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.62388c08.css",
-    "static/js/main.c319d04b.js"
+    "static/css/main.f975e1fa.css",
+    "static/js/main.2ee4991a.js"
   ]
 }
