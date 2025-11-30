@@ -29,6 +29,11 @@ function LoginPage({ onLoginSuccess }) {
           type="text"
           value={textboxValue}
           onChange={(e) => setTextboxValue(e.target.value)} // Allow changing the value
+          onFocus={(e) => {
+            if (e.target.value === "Enter codeword") {
+              setTextboxValue("");
+            }
+          }}
           placeholder="Enter text"
           onKeyDown={(e) => {
             if (e.key === 'Enter') {

@@ -102,7 +102,7 @@ function WelcomePage() {
                 <h2>Weather Information</h2>
                 {loading ? (
                     <div className="weather-result">
-                        <img src="/images/wait.webp" alt="Loading..." style={{ maxWidth: "100px", height: "auto" }} />
+                        <img src={`${process.env.PUBLIC_URL}/images/wait.webp`} alt="Loading..." style={{ maxWidth: "100px", height: "auto" }} />
                     </div>
                 ) : (weather && weather.location && (
                     <div className="weather-result">
@@ -135,7 +135,7 @@ function WelcomePage() {
             {/* Image Panel */}
             <div className="image-panel" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <h2>Welcome Image</h2>
-                <img src="images/sample-image.png" alt="Welcome" style={{ maxWidth: "300px", height: "auto" }} />
+                <img src={`${process.env.PUBLIC_URL}/images/sample-image.png`} alt="Welcome" style={{ maxWidth: "300px", height: "auto" }} />
             </div>
 
             {/* JSON Panel */}
